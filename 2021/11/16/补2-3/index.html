@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>补2.3 | XiaoZeLive's Blog</title><meta name="author" content="XiaoZe"><meta name="copyright" content="XiaoZe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="*16. Glance 创建查询镜像* 使用镜像文件centos_7-x86_64_xiandian.qcow2创建 glance镜像centos_7-x86_64，格式为 qcow2。使用 glance 相关命令查询 glance 镜像列表，将镜像上传的命令以及查询命令连同命令的执行结果提交到答题框。 [root@controller ~]# glance image-create –name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="补2.3">
+<meta property="og:url" content="https://xiaozelive.github.io/2021/11/16/%E8%A1%A52-3/index.html">
+<meta property="og:site_name" content="XiaoZeLive&#39;s Blog">
+<meta property="og:description" content="*16. Glance 创建查询镜像* 使用镜像文件centos_7-x86_64_xiandian.qcow2创建 glance镜像centos_7-x86_64，格式为 qcow2。使用 glance 相关命令查询 glance 镜像列表，将镜像上传的命令以及查询命令连同命令的执行结果提交到答题框。 [root@controller ~]# glance image-create –name">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-11-16T09:01:48.000Z">
+<meta property="article:modified_time" content="2021-11-16T09:02:23.612Z">
+<meta property="article:author" content="XiaoZe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xiaozelive.github.io/2021/11/16/%E8%A1%A52-3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '补2.3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-11-16 17:02:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/10/24/8Z1RQCpbhOFLjfe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">XiaoZeLive's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">补2.3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-16T09:01:48.000Z" title="发表于 2021-11-16 17:01:48">2021-11-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-16T09:02:23.612Z" title="更新于 2021-11-16 17:02:23">2021-11-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="补2.3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em><strong>*16. Glance 创建查询镜像*</strong></em></p>
+<p>使用镜像文件centos_7-x86_64_xiandian.qcow2创建 glance镜像centos_7-x86_64，格式为 qcow2。使用 glance 相关命令查询 glance 镜像列表，将镜像上传的命令以及查询命令连同命令的执行结果提交到答题框。</p>
+<p>[root@controller ~]# glance image-create –name “centos_7-x86_64” –disk-format “qcow2” –container-format “bare” –progress &lt; /opt/iaas/images/CentOS_7.2_x86_64_XD.qcow2 </p>
+<p>[=============================&gt;] 100%</p>
+<p>+——————+————————————–+</p>
+<p>| Property     | Value                 |</p>
+<p>+——————+————————————–+</p>
+<p>| checksum     | ea197f4c679b8e1ce34c0aa70ae2a94a   |</p>
+<p>| container_format | bare                 |</p>
+<p>| created_at    | 2017-05-13T10:54:46Z         |</p>
+<p>| disk_format    | qcow2                 |</p>
+<p>| id        | 3035e93d-9ed5-4889-9a63-cfe9394d54ef |</p>
+<p>| min_disk     | 0                  |</p>
+<p>| min_ram      | 0                  |</p>
+<p>| name       | centos_7-x86_64            |</p>
+<p>| owner       | 001ca3b899f1413f9ea02ab21493ae3a   |</p>
+<p>| protected     | False                 |</p>
+<p>| size       | 400752640              |</p>
+<p>| status      | active                |</p>
+<p>| tags       | []                  |</p>
+<p>| updated_at    | 2017-05-13T10:54:52Z         |</p>
+<p>| virtual_size   | None                 |</p>
+<p>| visibility    | private                |</p>
+<p>+——————+————————————–+</p>
+<p>[root@controller ~]# glance image-list</p>
+<p>+————————————–+—————–+</p>
+<p>| ID                  | Name       |</p>
+<p>+————————————–+—————–+</p>
+<p>| 3035e93d-9ed5-4889-9a63-cfe9394d54ef | centos_7-x86_64 |</p>
+<p>+————————————–+—————–+</p>
+<p>[root@controller ~]# glance image-show 3035e93d-9ed5-4889-9a63-cfe9394d54ef</p>
+<p>+——————+————————————–+</p>
+<p>| Property     | Value                 |</p>
+<p>+——————+————————————–+</p>
+<p>| checksum     | ea197f4c679b8e1ce34c0aa70ae2a94a   |</p>
+<p>| container_format | bare                 |</p>
+<p>| created_at    | 2017-05-13T10:54:46Z         |</p>
+<p>| disk_format    | qcow2                 |</p>
+<p>| id        | 3035e93d-9ed5-4889-9a63-cfe9394d54ef |</p>
+<p>| min_disk     | 0                  |</p>
+<p>| min_ram      | 0                  |</p>
+<p>| name       | centos_7-x86_64            |</p>
+<p>| owner       | 001ca3b899f1413f9ea02ab21493ae3a   |</p>
+<p>| protected     | False                 |</p>
+<p>| size       | 400752640              |</p>
+<p>| status      | active                |</p>
+<p>| tags       | []                  |</p>
+<p>| updated_at    | 2017-05-13T10:54:52Z         |</p>
+<p>| virtual_size   | None                 |</p>
+<p>| visibility    | private                |</p>
+<p>+——————+————————————–+</p>
+<p><em><strong>*17. Glance 查询服务状态*</strong></em></p>
+<p>使用 systemctl 相关命令，在一条命令中查询 glance 组件中所有服务的状态信息，查询命令连同命令的执行结果提交到答题框。</p>
+<p>[root@controller ~]# systemctl status openstack-glance-api.service openstack-glance-registry.service</p>
+<p>● openstack-glance-api.service - OpenStack Image Service (code-named Glance) API server</p>
+<p>  Loaded: loaded (/usr/lib/systemd/system/openstack-glance-api.service; enabled; vendor preset: disabled)</p>
+<p>  Active: active (running) since Sat 2017-05-13 18:49:41 CST; 11min ago</p>
+<p> Main PID: 11145 (glance-api)</p>
+<p>  CGroup: /system.slice/openstack-glance-api.service</p>
+<p>​      ├─11145 /usr/bin/python2 /usr/bin/glance-api</p>
+<p>​      ├─11165 /usr/bin/python2 /usr/bin/glance-api</p>
+<p>​      └─11166 /usr/bin/python2 /usr/bin/glance-api</p>
+<p>May 13 18:49:42 controller glance-api[11145]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Call .re…separately.</p>
+<p>May 13 18:49:42 controller glance-api[11145]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>May 13 18:54:46 controller glance-api[11145]: /usr/lib/python2.7/site-packages/oslo_db/sqlalchemy/enginefacade.py:1056: OsloDBDeprecationWarning: EngineFacade is deprecated…nginefacade</p>
+<p>May 13 18:54:46 controller glance-api[11145]: expire_on_commit=expire_on_commit, _conf=conf)</p>
+<p>May 13 18:54:52 controller glance-api[11145]: /usr/lib/python2.7/site-packages/glance/location.py:428: DeprecationWarning: Using function/method ‘ImageProxy._verify_signatu…he N cycle.</p>
+<p>May 13 18:54:52 controller glance-api[11145]: self._verify_signature_if_needed(checksum)</p>
+<p>May 13 18:54:52 controller glance-api[11145]: /usr/lib/python2.7/site-packages/glance/location.py:452: DeprecationWarning: Using function/method ‘glance.common.signature_ut…he N cycle.</p>
+<p>May 13 18:54:52 controller glance-api[11145]: self.image.extra_properties)):</p>
+<p>May 13 18:55:18 controller glance-api[11145]: /usr/lib/python2.7/site-packages/oslo_db/sqlalchemy/enginefacade.py:1056: OsloDBDeprecationWarning: EngineFacade is deprecated…nginefacade</p>
+<p>May 13 18:55:18 controller glance-api[11145]: expire_on_commit=expire_on_commit, _conf=conf)</p>
+<p>● openstack-glance-registry.service - OpenStack Image Service (code-named Glance) Registry server</p>
+<p>  Loaded: loaded (/usr/lib/systemd/system/openstack-glance-registry.service; enabled; vendor preset: disabled)</p>
+<p>  Active: active (running) since Sat 2017-05-13 18:49:41 CST; 11min ago</p>
+<p> Main PID: 11146 (glance-registry)</p>
+<p>  CGroup: /system.slice/openstack-glance-registry.service</p>
+<p>​      ├─11146 /usr/bin/python2 /usr/bin/glance-registry</p>
+<p>​      ├─11163 /usr/bin/python2 /usr/bin/glance-registry</p>
+<p>​      └─11164 /usr/bin/python2 /usr/bin/glance-registry</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Cal…separately.</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Cal…separately.</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Cal…separately.</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Cal…separately.</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: /usr/lib/python2.7/site-packages/paste/deploy/loadwsgi.py:22: DeprecationWarning: Parameters to load are deprecated.  Cal…separately.</p>
+<p>May 13 18:49:42 controller glance-registry[11146]: return pkg_resources.EntryPoint.parse(“x=” + s).load(False)</p>
+<p>Hint: Some lines were ellipsized, use -l to show in full.</p>
+<p><em><strong>*Nova*</strong></em></p>
+<p>根 据 平 台 安 装 步 骤 安 装 至 nova 计 算 服 务 ， 在 控 制 节 点 使 用 提 供 的 脚 本iaas-install-nova-controller.sh、在计算节点使用提供的脚本 iaas-install-nova-compute.sh，安装nova 组件。</p>
+<p><em><strong>*18. * Nova 查询虚拟机监控状态*</strong></em></p>
+<p>使用 nova 相关命令查询计算节点虚拟机监控器的状态，将命令和结果以文本形式提交到答题框。</p>
+<p>[root@controller ~]# nova hypervisor-stats</p>
+<p>+———————-+——-+</p>
+<p>| Property       | Value |</p>
+<p>+———————-+——-+</p>
+<p>| count         | 1   |</p>
+<p>| current_workload   | 0   |</p>
+<p>| disk_available_least | 9   |</p>
+<p>| free_disk_gb     | 17  |</p>
+<p>| free_ram_mb      | 1311 |</p>
+<p>| local_gb       | 17  |</p>
+<p>| local_gb_used     | 0   |</p>
+<p>| memory_mb       | 1823 |</p>
+<p>| memory_mb_used    | 512  |</p>
+<p>| running_vms      | 0   |</p>
+<p>| vcpus         | 2   |</p>
+<p>| vcpus_used      | 0   |</p>
+<p>+———————-+——-+</p>
+<p><em><strong>*19. Nova 查询服务列表*</strong></em></p>
+<p>使用 nova 相关命令查询 nova 服务状态列表，以文本形式提交查询命令和结果到答题框。</p>
+<p>[root@controller ~]# nova service-list</p>
+<p>+—-+——————+————+———-+———+——-+—————————-+—————–+</p>
+<p>| Id | Binary      | Host    | Zone   | Status  | State | Updated_at         | Disabled Reason |</p>
+<p>+—-+——————+————+———-+———+——-+—————————-+—————–+</p>
+<p>| 1 | nova-conductor  | controller | internal | enabled | up   | 2017-05-13T11:40:41.000000 | -        |</p>
+<p>| 2 | nova-consoleauth | controller | internal | enabled | up   | 2017-05-13T11:40:41.000000 | -        |</p>
+<p>| 3 | nova-scheduler  | controller | internal | enabled | up   | 2017-05-13T11:40:41.000000 | -        |</p>
+<p>| 6 | nova-compute   | compute   | nova   | enabled | up   | 2017-05-13T11:40:38.000000 | -        |</p>
+<p>+—-+——————+————+———-+———+——-+—————————-+—————–+</p>
+<p><em><strong>*20. Nova 查询云主机类型列表*</strong></em></p>
+<p>使用 nova 相关命令查询云主机类型的列表信息，以文本形式提交查询命令和结果到答题框。</p>
+<p>[root@controller ~]# nova flavor-list</p>
+<p>+—-+———–+———–+——+———–+——+——-+————-+———–+</p>
+<p>| ID | Name    | Memory_MB | Disk | Ephemeral | Swap | VCPUs | RXTX_Factor | Is_Public |</p>
+<p>+—-+———–+———–+——+———–+——+——-+————-+———–+</p>
+<p>| 1 | m1.tiny  | 512    | 1  | 0     |    | 1   | 1.0     | True    |</p>
+<p>| 2 | m1.small  | 2048   | 20  | 0     |    | 1   | 1.0     | True    |</p>
+<p>| 3 | m1.medium | 4096   | 40  | 0     |    | 2   | 1.0     | True    |</p>
+<p>| 4 | m1.large  | 8192   | 80  | 0     |    | 4   | 1.0     | True    |</p>
+<p>| 5 | m1.xlarge | 16384   | 160 | 0     |    | 8   | 1.0     | True    |</p>
+<p>+—-+———–+———–+——+———–+——+——-+————-+———–+</p>
+<p><em><strong>*21. Nova 查询默认安全组*</strong></em></p>
+<p>使用 nova 相关命令查询 nova 安全组 default 的规则列表，以文本形式提交查询命令和结果到答题框。</p>
+<p>[root@controller ~]# nova secgroup-list </p>
+<p>+————————————–+———+————————+</p>
+<p>| Id                  | Name   | Description       |</p>
+<p>+————————————–+———+————————+</p>
+<p>| da85e852-1b8f-46bf-b172-8707a3e69b11 | default | Default security group |</p>
+<p>+————————————–+———+————————+</p>
+<p>[root@controller ~]# nova secgroup-list-rules default</p>
+<p>+————-+———–+———+———–+————–+</p>
+<p>| IP Protocol | From Port | To Port | IP Range  | Source Group |</p>
+<p>+————-+———–+———+———–+————–+</p>
+<p>| icmp     | -1    | -1   | 0.0.0.0/0 |        |</p>
+<p>| tcp     | 1     | 65535  | 0.0.0.0/0 |        |</p>
+<p>|       |      |     |      | default    |</p>
+<p>| udp     | 1     | 65535  | 0.0.0.0/0 |        |</p>
+<p>|       |      |     |      | default    |</p>
+<p>+————-+———–+———+———–+————–+</p>
+<p><em><strong>*Neutron*</strong></em></p>
+<p>根据平台安装步骤安装至 neutron 网络服务，在控制节点和计算节点通过提供的 neutron脚本，完成 neutron 服务在控制节点和计算节点的安装，并配置为 GRE 网络。</p>
+<p>根据平台安装步骤安装至 neutron 网络服务，在控制节点和计算节点通过提供的 neutron脚本，完成 neutron 服务在控制节点和计算节点的安装，并配置为 VLAN 网络。</p>
+<p><em><strong>*22. 查询网络服务的列表信息*</strong></em></p>
+<p>使用 neutron 相关命令查询网络服务的列表 信息，并已下图的形式打印出来，将相应的查询命令以及反馈结果以文本形式提交到答题框。</p>
+<p><img src="file:///C:\Users\34066\AppData\Local\Temp\ksohtml\wps29BE.tmp.jpg" alt="img"> </p>
+<p>[root@controller ~]# neutron agent-list -c binary -c agent_type -c alive </p>
+<p>+—————————+——————–+——-+</p>
+<p>| binary           | agent_type     | alive |</p>
+<p>+—————————+——————–+——-+</p>
+<p>| neutron-metadata-agent   | Metadata agent   | :-)  |</p>
+<p>| neutron-dhcp-agent     | DHCP agent     | :-)  |</p>
+<p>| neutron-openvswitch-agent | Open vSwitch agent | :-)  |</p>
+<p>| neutron-metadata-agent   | Metadata agent   | :-)  |</p>
+<p>| neutron-openvswitch-agent | Open vSwitch agent | :-)  |</p>
+<p>| neutron-l3-agent      | L3 agent      | :-)  |</p>
+<p>+—————————+——————–+——-+</p>
+<p><em><strong>*23. 查询网络服务的列表信息*</strong></em></p>
+<p>仅使用 neutron 相关命令查询网络服务的列表信息中的“ binary”一列，将查询信息以文本形式提交到答题框。</p>
+<p>[root@controller ~]# neutron agent-list -c binary</p>
+<p>+—————————+</p>
+<p>| binary           |</p>
+<p>+—————————+</p>
+<p>| neutron-metadata-agent   |</p>
+<p>| neutron-dhcp-agent     |</p>
+<p>| neutron-openvswitch-agent |</p>
+<p>| neutron-metadata-agent   |</p>
+<p>| neutron-openvswitch-agent |</p>
+<p>| neutron-l3-agent      |</p>
+<p>+—————————+ </p>
+<p><em><strong>*24. * 查询网络服务 DHCP agent 的详细信息*</strong></em></p>
+<p>使用 neutron 相关命令查询网络服务 DHCP agent 的详细信息，将相应的查询命令以及反馈结果以文本形式提交到答题框。</p>
+<p>[root@controller ~]# neutron agent-list </p>
+<p>+————————————–+——————–+————+——————-+——-+—————-+—————————+</p>
+<p>| id                  | agent_type     | host    | availability_zone | alive | admin_state_up | binary           |</p>
+<p>+————————————–+——————–+————+——————-+——-+—————-+—————————+</p>
+<p>| 0e5ad4ff-98e9-4c29-8a93-61c46b37738f | Open vSwitch agent | controller |          | :-)  | True      | neutron-openvswitch-agent |</p>
+<p>| 6de9be96-2570-45c5-a678-feab9aefbb99 | DHCP agent     | controller | nova        | :-)  | True      | neutron-dhcp-agent     |</p>
+<p>| 7617012a-1f86-4e08-a910-3dd897238d65 | L3 agent      | controller | nova        | :-)  | True      | neutron-l3-agent      |</p>
+<p>| b4f1c445-b508-401f-b059-77f94e0423a6 | Open vSwitch agent | compute   |          | :-)  | True      | neutron-openvswitch-agent |</p>
+<p>| bd60054d-5e96-4c11-9907-4edc125a8bec | Metadata agent   | controller |          | :-)  | True      | neutron-metadata-agent   |</p>
+<p>| f8fd0f35-54e7-4247-9ceb-6765966c74e8 | Metadata agent   | compute   |          | :-)  | True      | neutron-metadata-agent   |</p>
+<p>+————————————–+——————–+————+——————-+——-+—————-+—————————+</p>
+<p>[root@controller ~]# neutron agent-show 6de9be96-2570-45c5-a678-feab9aefbb99</p>
+<p>+———————+———————————————————-+</p>
+<p>| Field        | Value                           |</p>
+<p>+———————+———————————————————-+</p>
+<p>| admin_state_up    | True                           |</p>
+<p>| agent_type      | DHCP agent                        |</p>
+<p>| alive        | True                           |</p>
+<p>| availability_zone  | nova                           |</p>
+<p>| binary        | neutron-dhcp-agent                    |</p>
+<p>| configurations    | {                             |</p>
+<p>|           |    “subnets”: 0,                    |</p>
+<p>|           |    “dhcp_lease_duration”: 86400,            |</p>
+<p>|           |    “dhcp_driver”: “neutron.agent.linux.dhcp.Dnsmasq”,  |</p>
+<p>|           |    “networks”: 0,                    |</p>
+<p>|           |    “log_agent_heartbeats”: false,            |</p>
+<p>|           |    “ports”: 0                     |</p>
+<p>|           | }                             |</p>
+<p>| created_at      | 2017-05-13 12:14:08                    |</p>
+<p>| description     |                              |</p>
+<p>| heartbeat_timestamp | 2017-05-13 15:39:42                    |</p>
+<p>| host         | controller                        |</p>
+<p>| id          | 6de9be96-2570-45c5-a678-feab9aefbb99           |</p>
+<p>| started_at      | 2017-05-13 12:14:08                    |</p>
+<p>| topic        | dhcp_agent                        |</p>
+<p>+———————+———————————————————-+</p>
+<p>[root@controller ~]# neutron agent-show <code>neutron agent-list | awk -F &quot;|&quot; &#39;/DHCP/&#123;print $2&#125;&#39; </code> </p>
+<p>+———————+———————————————————-+</p>
+<p>| Field        | Value                           |</p>
+<p>+———————+———————————————————-+</p>
+<p>| admin_state_up    | True                           |</p>
+<p>| agent_type      | DHCP agent                        |</p>
+<p>| alive        | True                           |</p>
+<p>| availability_zone  | nova                           |</p>
+<p>| binary        | neutron-dhcp-agent                    |</p>
+<p>| configurations    | {                             |</p>
+<p>|           |    “subnets”: 0,                    |</p>
+<p>|           |    “dhcp_lease_duration”: 86400,            |</p>
+<p>|           |    “dhcp_driver”: “neutron.agent.linux.dhcp.Dnsmasq”,  |</p>
+<p>|           |    “networks”: 0,                    |</p>
+<p>|           |    “log_agent_heartbeats”: false,            |</p>
+<p>|           |    “ports”: 0                     |</p>
+<p>|           | }                             |</p>
+<p>| created_at      | 2017-05-13 12:14:08                    |</p>
+<p>| description     |                              |</p>
+<p>| heartbeat_timestamp | 2017-05-13 15:44:42                    |</p>
+<p>| host         | controller                        |</p>
+<p>| id          | 6de9be96-2570-45c5-a678-feab9aefbb99           |</p>
+<p>| started_at      | 2017-05-13 12:14:08                    |</p>
+<p>| topic        | dhcp_agent                        |</p>
+<p>+———————+———————————————————-+</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">XiaoZe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaozelive.github.io/2021/11/16/%E8%A1%A52-3/">https://xiaozelive.github.io/2021/11/16/%E8%A1%A52-3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xiaozelive.github.io" target="_blank">XiaoZeLive's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/16/%E8%A1%A52-4/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">补2.4</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/16/%E8%A1%A52-2/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">补2.2</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/10/24/8Z1RQCpbhOFLjfe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">XiaoZe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaozelive"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/16/%E8%A1%A52-4/" title="补2.4"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补2.4"/></a><div class="content"><a class="title" href="/2021/11/16/%E8%A1%A52-4/" title="补2.4">补2.4</a><time datetime="2021-11-16T09:02:31.000Z" title="发表于 2021-11-16 17:02:31">2021-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/16/%E8%A1%A52-3/" title="补2.3"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补2.3"/></a><div class="content"><a class="title" href="/2021/11/16/%E8%A1%A52-3/" title="补2.3">补2.3</a><time datetime="2021-11-16T09:01:48.000Z" title="发表于 2021-11-16 17:01:48">2021-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/16/%E8%A1%A52-2/" title="补2.2"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补2.2"/></a><div class="content"><a class="title" href="/2021/11/16/%E8%A1%A52-2/" title="补2.2">补2.2</a><time datetime="2021-11-16T08:37:52.000Z" title="发表于 2021-11-16 16:37:52">2021-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/16/%E8%A1%A52/" title="补2"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补2"/></a><div class="content"><a class="title" href="/2021/11/16/%E8%A1%A52/" title="补2">补2</a><time datetime="2021-11-16T08:30:42.000Z" title="发表于 2021-11-16 16:30:42">2021-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/16/3-txt/" title="3.txt"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3.txt"/></a><div class="content"><a class="title" href="/2021/11/16/3-txt/" title="3.txt">3.txt</a><time datetime="2021-11-16T08:25:56.000Z" title="发表于 2021-11-16 16:25:56">2021-11-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By XiaoZe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
